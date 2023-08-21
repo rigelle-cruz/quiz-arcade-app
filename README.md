@@ -1,1 +1,1 @@
-# quizz-arcade-app
+# Quiz App
