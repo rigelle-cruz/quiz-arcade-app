@@ -1,6 +1,14 @@
 import { useQuery } from 'react-query'
 import { fetchTriviaQuestions } from '../apis/questionsApi'
 
+interface QuestionProps {
+  question: {
+    question: string
+    correct_answer: string
+  }
+  onAnswer: (isCorrect: boolean) => void
+}
+
 function Questions() {
   const { data, error, isLoading } = useQuery(
     'triviaQuestions',
