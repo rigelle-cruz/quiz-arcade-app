@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query'
+import { useState } from 'react'
 
 interface QuestionProps {
   question: {
@@ -19,7 +19,17 @@ function Questions({ question, onAnswer }: QuestionProps) {
     setAnswered(true) // Mark the question as answered
   }
 
-  return <div></div>
+  return (
+    <div>
+      <h2>{question.question}</h2>
+      {!answered && (
+        <div>
+          <button onClick={() => handleAnswer(true)}>True</button>
+          <button onClick={() => handleAnswer(false)}>False</button>
+        </div>
+      )}
+    </div>
+  )
 }
 
 export default Questions
