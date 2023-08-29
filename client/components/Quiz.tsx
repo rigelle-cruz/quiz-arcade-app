@@ -32,9 +32,15 @@ function Quiz() {
 
   return (
     <>
-      <h1>QUIZ</h1>
-      <Questions />
-      {/* make conditional rendering */}
+      <h1>Quiz Game</h1>
+      <div>
+        <p>Score: {score}</p>
+        {currentQuestionIndex < data.results.length ? (
+          <Questions question={currentQuestion} onAnswer={handleAnswer} />
+        ) : (
+          <GameOver />
+        )}
+      </div>
     </>
   )
 }
