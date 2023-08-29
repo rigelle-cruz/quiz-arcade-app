@@ -3,21 +3,24 @@ import { useQuery } from 'react-query'
 
 import Questions from './Questions'
 import { fetchTriviaQuestions } from '../apis/questionsApi'
+import GameOver from './GameOver'
 
 function Quiz() {
   const { data, error, isLoading } = useQuery(
     'triviaQuestions',
     fetchTriviaQuestions
   )
-  const [score, setScore] = useState(0)
+
+  const [score, setScore] = useState<number>(0)
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
   // const [gameOver, setGameOver] = useState(false)
 
   const handleAnswer = (isCorrect: boolean) => {
     if (isCorrect) {
       setScore(score + 1)
-      setCurrentQuestionIndex(currentQuestionIndex + 1)
     }
+    // Move to the next question
+    setCurrentQuestionIndex(currentQuestionIndex + 1)
   }
 
   if (isLoading) {
@@ -26,6 +29,10 @@ function Quiz() {
 
   if (error instanceof Error) {
     return <div>Error: {error.message}</div>
+  }
+  if (currentQuestionIndex >= data.results.length) {
+    // All questions answered, show Game Over
+    return <GameOver score={score} />
   }
 
   const currentQuestion = data.results[currentQuestionIndex]
@@ -36,9 +43,13 @@ function Quiz() {
       <div>
         <p>Score: {score}</p>
         {currentQuestionIndex < data.results.length ? (
-          <Questions question={currentQuestion} onAnswer={handleAnswer} />
+          <Questions
+            question={currentQuestion}
+            onAnswer={handleAnswer}
+            onNext={() => {}}
+          />
         ) : (
-          <GameOver />
+          <GameOver score={score} />
         )}
       </div>
     </>
