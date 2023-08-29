@@ -1,9 +1,14 @@
-function GameOver() {
-  
+interface GameOverProps {
+  score: number
+}
+
+function GameOver({ score }: GameOverProps) {
   return (
-    <>
-    <h1>GAME OVER COMPONENT!</h1>
-      </>
+    <div>
+      <h2>Game Over!</h2>
+      <p>Your Final Score: {score}</p>
+      {/* ADD ADDITIONAL BUTTONS, ETC. */}
+    </div>
   )
 }
 
