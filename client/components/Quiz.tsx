@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useQuery } from 'react-query'
 
 import { fetchTriviaQuestions } from '../apis/questionsApi'
-import GameOver from './GameOver'
+import { useNavigate } from 'react-router-dom'
 
 interface Question {
   category: string
@@ -26,16 +26,23 @@ function Quiz() {
 
   const questions: Question[] = questionsData?.results || []
 
+  const navigate = useNavigate()
+
   const handleAnswer = (isCorrect: boolean) => {
     if (isCorrect) {
       setScore(score + 1)
     } else {
       setIsGameOver(true)
+      navigate('/gameover')
     }
 
     if (currentQuestion + 1 < questions.length) {
       setCurrentQuestion(currentQuestion + 1)
     }
+  }
+
+  if (isGameOver) {
+    return null
   }
 
   if (isLoading) {
@@ -72,7 +79,6 @@ function Quiz() {
           <p>Score: {score}</p>
         </div>
       )}
-      {isGameOver && <GameOver />}
     </div>
   )
 }
