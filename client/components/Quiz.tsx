@@ -1,58 +1,79 @@
 import { useState } from 'react'
 import { useQuery } from 'react-query'
 
-import Questions from './Questions'
 import { fetchTriviaQuestions } from '../apis/questionsApi'
 import GameOver from './GameOver'
 
-function Quiz() {
-  const { data, error, isLoading } = useQuery(
-    'triviaQuestions',
-    fetchTriviaQuestions
-  )
+interface Question {
+  category: string
+  type: string
+  difficulty: string
+  question: string
+  correct_answer: string
+  incorrect_answers: string[]
+}
 
-  const [score, setScore] = useState<number>(0)
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
-  // const [gameOver, setGameOver] = useState(false)
+function Quiz() {
+  const {
+    data: questionsData,
+    isLoading,
+    isError,
+  } = useQuery('triviaQuestions', fetchTriviaQuestions)
+
+  const [currentQuestion, setCurrentQuestion] = useState(0)
+  const [score, setScore] = useState(0)
+  const [isGameOver, setIsGameOver] = useState(false)
+
+  const questions: Question[] = questionsData?.results || []
 
   const handleAnswer = (isCorrect: boolean) => {
     if (isCorrect) {
       setScore(score + 1)
+    } else {
+      setIsGameOver(true)
     }
-    // Move to the next question
-    setCurrentQuestionIndex(currentQuestionIndex + 1)
+
+    if (currentQuestion + 1 < questions.length) {
+      setCurrentQuestion(currentQuestion + 1)
+    }
   }
 
   if (isLoading) {
     return <div>Loading...</div>
   }
 
-  if (error instanceof Error) {
-    return <div>Error: {error.message}</div>
+  if (isError) {
+    return <div>Error fetching questions</div>
   }
-  if (currentQuestionIndex >= data.results.length) {
-    // All questions answered, show Game Over
-    return <GameOver score={score} />
-  }
-
-  const currentQuestion = data.results[currentQuestionIndex]
 
   return (
-    <>
-      <h1>Quiz Game</h1>
-      <div>
-        <p>Score: {score}</p>
-        {currentQuestionIndex < data.results.length ? (
-          <Questions
-            question={currentQuestion}
-            onAnswer={handleAnswer}
-            onNext={() => {}}
-          />
-        ) : (
-          <GameOver score={score} />
-        )}
-      </div>
-    </>
+    <div>
+      {!isGameOver && currentQuestion < questions.length && (
+        <div>
+          <h2>True or False Quiz</h2>
+          <h3>Question {currentQuestion + 1}</h3>
+          <p>{questions[currentQuestion].question}</p>
+          <button
+            onClick={() =>
+              handleAnswer(questions[currentQuestion].correct_answer === 'True')
+            }
+          >
+            True
+          </button>
+          <button
+            onClick={() =>
+              handleAnswer(
+                questions[currentQuestion].correct_answer === 'False'
+              )
+            }
+          >
+            False
+          </button>
+          <p>Score: {score}</p>
+        </div>
+      )}
+      {isGameOver && <GameOver />}
+    </div>
   )
 }
 
