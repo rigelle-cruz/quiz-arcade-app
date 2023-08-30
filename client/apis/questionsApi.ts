@@ -11,12 +11,27 @@ interface TriviaQuestion {
   incorrect_answers: string[]
 }
 
-export async function fetchTriviaQuestions() {
+export async function fetchTriviaQuestions(): Promise<{
+  response_code: number
+  results: TriviaQuestion[]
+}> {
   const response = await request.get(
     'https://opentdb.com/api.php?amount=50&category=15&type=boolean'
   )
 
-  return response.body
+  // Decode HTML entities in the questions
+  const decodedQuestions = response.body.results.map(
+    (question: TriviaQuestion) => {
+      return {
+        ...question,
+        question: decodeHTML(question.question),
+      }
+    }
+  )
+  return {
+    ...response.body,
+    results: decodedQuestions,
+  }
 }
 
 // Function to decode HTML entities
