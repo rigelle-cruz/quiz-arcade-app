@@ -54,7 +54,7 @@ function Quiz() {
   }
 
   return (
-    <div>
+    <div className="screen">
       {!isGameOver && currentQuestion < questions.length && (
         <div>
           <h2>True or False Quiz</h2>

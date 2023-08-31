@@ -1,0 +1,26 @@
+.screen {
+  background-color: #00000080;
+  position: relative;
+  width: 200px;
+  height: 150px;
+  margin: 20px 0;
+  border-radius: 50% / 10%;
+  color: white;
+  text-align: center;
+  text-indent: 0.1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.screen:after {
+  content: '';
+  position: absolute;
+  top: 10%;
+  bottom: 10%;
+  right: -5%;
+  left: -5%;
+  background: #00000080;
+  border-radius: 5% / 50%;
+}
