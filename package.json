@@ -12,7 +12,7 @@
     "dev": "run-p dev:client dev:server dev:css",
     "dev:client": "vite",
     "dev:server": "nodemon --watch server/",
-    "dev:css": "tailwindcss -i ./client/styles/input.css -o ./public/output.css --watch",
+    "dev:css": "nodemon -e css -x \"echo 'CSS file changed'\"",
     "build": "run-s build:client build:server",
     "build:client": "vite build",
     "build:server": "tsc -p server/tsconfig.json",
