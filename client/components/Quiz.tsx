@@ -54,38 +54,40 @@ function Quiz() {
   }
 
   return (
-    <>
-      <div className="quiz-container">
+    <div className="quiz-container">
+      {!isGameOver && currentQuestion < questions.length && (
         <div className="quiz-content">
-          {!isGameOver && currentQuestion < questions.length && (
-            <div>
-              <h2>True or False Quiz</h2>
-              <h3>Question {currentQuestion + 1}</h3>
-              <p>{questions[currentQuestion].question}</p>
-              <button
-                onClick={() =>
-                  handleAnswer(
-                    questions[currentQuestion].correct_answer === 'True'
-                  )
-                }
-              >
-                True
-              </button>
-              <button
-                onClick={() =>
-                  handleAnswer(
-                    questions[currentQuestion].correct_answer === 'False'
-                  )
-                }
-              >
-                False
-              </button>
-              <p>Score: {score}</p>
-            </div>
-          )}
+          <h1>True or False Quiz</h1>
+          <h2>Question {currentQuestion + 1}</h2>
+          <p className="question-text">{questions[currentQuestion].question}</p>
+          <div className="button-container">
+            <button
+              className="answer-button true-button"
+              onClick={() =>
+                handleAnswer(
+                  questions[currentQuestion].correct_answer === 'True'
+                )
+              }
+            >
+              True
+            </button>
+            <button
+              className="answer-button false-button"
+              onClick={() =>
+                handleAnswer(
+                  questions[currentQuestion].correct_answer === 'False'
+                )
+              }
+            >
+              False
+            </button>
+          </div>
+          <p className="score">Score: {score}</p>
         </div>
-      </div>
-    </>
+      )}
+      {isLoading && <div className="loading">Loading...</div>}
+      {isError && <div className="error">Error fetching questions</div>}
+    </div>
   )
 }
 
