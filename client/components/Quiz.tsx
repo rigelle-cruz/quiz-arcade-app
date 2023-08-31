@@ -54,32 +54,38 @@ function Quiz() {
   }
 
   return (
-    <div className="screen">
-      {!isGameOver && currentQuestion < questions.length && (
-        <div>
-          <h2>True or False Quiz</h2>
-          <h3>Question {currentQuestion + 1}</h3>
-          <p>{questions[currentQuestion].question}</p>
-          <button
-            onClick={() =>
-              handleAnswer(questions[currentQuestion].correct_answer === 'True')
-            }
-          >
-            True
-          </button>
-          <button
-            onClick={() =>
-              handleAnswer(
-                questions[currentQuestion].correct_answer === 'False'
-              )
-            }
-          >
-            False
-          </button>
-          <p>Score: {score}</p>
+    <>
+      <div className="quiz-container">
+        <div className="quiz-content">
+          {!isGameOver && currentQuestion < questions.length && (
+            <div>
+              <h2>True or False Quiz</h2>
+              <h3>Question {currentQuestion + 1}</h3>
+              <p>{questions[currentQuestion].question}</p>
+              <button
+                onClick={() =>
+                  handleAnswer(
+                    questions[currentQuestion].correct_answer === 'True'
+                  )
+                }
+              >
+                True
+              </button>
+              <button
+                onClick={() =>
+                  handleAnswer(
+                    questions[currentQuestion].correct_answer === 'False'
+                  )
+                }
+              >
+                False
+              </button>
+              <p>Score: {score}</p>
+            </div>
+          )}
         </div>
-      )}
-    </div>
+      </div>
+    </>
   )
 }
 
