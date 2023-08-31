@@ -1,6 +1,37 @@
 h1 {
-  font-size: 28px;
+  font-family: 'ArcadeClassic';
+  font-size: 40px;
   margin-bottom: 10px;
+  color: #ffff;
+  text-shadow:
+    -1px -1px 0 #000000,  /* Top left */
+     1px -1px 0 #000000,  /* Top right */
+    -1px  1px 0 #000000,  /* Bottom left */
+     1px  1px 0 #000000;  /* Bottom right */
+}
+
+h2 {
+  font-family: 'ArcadeClassic';
+  font-size: 20px;
+  font-weight: bolder;
+  color: white;
+  text-shadow:
+    -1px -1px 0 #a56464,  /* Top left */
+     1px -1px 0 #a56464,  /* Top right */
+    -1px  1px 0 #a56464,  /* Bottom left */
+     1px  1px 0 #a56464;  /* Bottom right */
+
+}
+
+p {
+  font-family: 'ArcadeClassic';
+  font-size: 20px;
+  color: white;
+  text-shadow:
+    -1px -1px 0 #a56464,  /* Top left */
+     1px -1px 0 #a56464,  /* Top right */
+    -1px  1px 0 #a56464,  /* Bottom left */
+     1px  1px 0 #a56464;  /* Bottom right */
 }
 
 .question-text {
@@ -21,13 +52,14 @@ h1 {
 }
 
 .quiz-content {
-  background-color: #1e1e1e;
+  background-color: #272727;
   color: white;
-  font-family: 'Press Start 2P';
   text-align: center;
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 50% / 10%;
   max-width: 600px;
+  letter-spacing: 4.5px;
+  line-height: 1.5;
 }
 
 .button-container {
@@ -39,6 +71,7 @@ h1 {
 .answer-button {
   color: white;
   padding: 10px 20px;
+  font-family: 'ArcadeClassic';
   font-size: 18px;
   cursor: pointer;
   border-radius: 5px;
@@ -55,7 +88,7 @@ h1 {
 }
 
 .false-button {
-  background-color: #ff0000;
+  background-color: #e80101;
   border-color: #ff5555;
 }
 

@@ -57,7 +57,10 @@ function Quiz() {
     <div className="quiz-container">
       {!isGameOver && currentQuestion < questions.length && (
         <div className="quiz-content">
-          <h1>True or False Quiz</h1>
+          <h1>
+            <span style={{ color: '#65a07a' }}>True </span> or{' '}
+            <span style={{ color: '#cf7b7b' }}>False </span>
+          </h1>
           <h2>Question {currentQuestion + 1}</h2>
           <p className="question-text">{questions[currentQuestion].question}</p>
           <div className="button-container">
