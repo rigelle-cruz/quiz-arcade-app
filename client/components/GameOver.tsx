@@ -8,8 +8,12 @@ function GameOver() {
 
   return (
     <div>
-      <h2>Game Over!</h2>
-      <button onClick={() => goTo('/')}>Play Again</button>
+      <div className="game-over">
+        <h1>Game Over!</h1>
+        <button className="play-again-button" onClick={() => goTo('/')}>
+          Play Again
+        </button>
+      </div>
     </div>
   )
 }
