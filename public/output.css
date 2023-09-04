@@ -112,15 +112,22 @@ p {
 
 /* -------------------------- game-over */
 
-.game-over {
+.full-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #323232;
-  color: #848484;
+}
+
+.game-over {
   text-align: center;
-  padding: 20px;
-  max-width: 600px;
+  font-size: 100px;
   letter-spacing: 4.5px;
-  line-height: 1.5;
-  box-shadow: 0 0 0 10px #242424 inset;
 }
 
 .play-again-button {

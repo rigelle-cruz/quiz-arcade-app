@@ -7,9 +7,9 @@ function GameOver() {
   }
 
   return (
-    <div>
+    <div className="full-screen">
       <div className="game-over">
-        <h1>Game Over!</h1>
+        <h1 className="game-over">Game Over!</h1>
         <button className="play-again-button" onClick={() => goTo('/')}>
           Play Again
         </button>
