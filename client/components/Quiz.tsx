@@ -91,9 +91,9 @@ function Quiz() {
         </div>
       )}
       {!showQuestions && (
-        <div>
+        <div className="start">
           <div>
-            <h1>TRUE OR FALSE</h1>
+            <h1 className="start-header">TRUE OR FALSE</h1>
           </div>
           <button className="start-button" onClick={startQuestions}>
             Click to Start

@@ -110,6 +110,17 @@ p {
   color: red;
 }
 
+/* -------------------------- start */
+
+.start {
+  display: flex;
+  flex-direction: column;
+}
+
+.start-header {
+  letter-spacing: 4.5px;
+}
+
 .start-button {
   color: white;
   padding: 10px 20px;
