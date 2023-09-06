@@ -23,6 +23,7 @@ function Quiz() {
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [score, setScore] = useState(0)
   const [isGameOver, setIsGameOver] = useState(false)
+  const [showQuestions, setShowQuestions] = useState(false) 
 
   const questions: Question[] = questionsData?.results || []
 
@@ -41,6 +42,10 @@ function Quiz() {
     }
   }
 
+  const startQuestions = () => {
+    setShowQuestions(true)
+  }
+
   if (isGameOver) {
     return null
   }
@@ -55,7 +60,7 @@ function Quiz() {
 
   return (
     <div className="quiz-container">
-      {!isGameOver && currentQuestion < questions.length && (
+      {!isGameOver && showQuestions && currentQuestion < questions.length && (
         <div className="quiz-content">
           <h1>True or False</h1>
           <h2>Question {currentQuestion + 1}</h2>
@@ -85,6 +90,7 @@ function Quiz() {
           <p className="score">Score: {score}</p>
         </div>
       )}
+      {!showQuestions && <button onClick={startQuestions}>Start Game! </button>}
       {isLoading && <div className="loading">Loading...</div>}
       {isError && <div className="error">Error fetching questions</div>}
     </div>
