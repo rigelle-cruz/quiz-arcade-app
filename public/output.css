@@ -110,6 +110,22 @@ p {
   color: red;
 }
 
+.start-button {
+  color: white;
+  padding: 10px 20px;
+  font-family: 'ArcadeClassic';
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color:  #b071f7;
+  letter-spacing: 4.5px;
+  transition: background-color 0.3s ease;
+}
+
+.start-button:hover {
+  background-color:  #8b47d8;
+}
+
 /* -------------------------- game-over */
 
 .full-screen {
